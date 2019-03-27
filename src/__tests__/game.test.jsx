@@ -1,5 +1,6 @@
 import React from 'react';
 import Game from '../Game';
+import renderer from 'react-test-renderer';
 
 import { shallow, mount } from 'enzyme';
 
@@ -10,6 +11,11 @@ const playTurn = (wrapper, atSquare) => {
 
 it('Renders without crashing', () => {
   shallow(<Game/>)
+});
+
+it('Renders correctly', () => {
+  const tree = renderer.create(<Game/>).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 it('Renders game status correctly', () => {
